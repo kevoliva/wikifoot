@@ -36,10 +36,16 @@ class Country
      */
     private $players;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Competition::class, mappedBy="country")
+     */
+    private $competitions;
+
     public function __construct()
     {
         $this->teams = new ArrayCollection();
         $this->players = new ArrayCollection();
+        $this->competitions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -113,6 +119,36 @@ class Country
             // set the owning side to null (unless already changed)
             if ($player->getCountry() === $this) {
                 $player->setCountry(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Competition>
+     */
+    public function getCompetitions(): Collection
+    {
+        return $this->competitions;
+    }
+
+    public function addCompetition(Competition $competition): self
+    {
+        if (!$this->competitions->contains($competition)) {
+            $this->competitions[] = $competition;
+            $competition->setCountry($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCompetition(Competition $competition): self
+    {
+        if ($this->competitions->removeElement($competition)) {
+            // set the owning side to null (unless already changed)
+            if ($competition->getCountry() === $this) {
+                $competition->setCountry(null);
             }
         }
 

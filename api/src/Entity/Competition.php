@@ -41,6 +41,11 @@ class Competition
      */
     private $teams;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Country::class, inversedBy="competitions")
+     */
+    private $country;
+
     public function __construct()
     {
         $this->palmares = new ArrayCollection();
@@ -129,6 +134,18 @@ class Competition
         if ($this->teams->removeElement($team)) {
             $team->removeCompetition($this);
         }
+
+        return $this;
+    }
+
+    public function getCountry(): ?Country
+    {
+        return $this->country;
+    }
+
+    public function setCountry(?Country $country): self
+    {
+        $this->country = $country;
 
         return $this;
     }
