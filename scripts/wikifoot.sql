@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : mysql
--- Généré le : jeu. 17 mars 2022 à 10:16
+-- Généré le : jeu. 17 mars 2022 à 10:15
 -- Version du serveur : 8.0.28
 -- Version de PHP : 8.0.15
 
@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `competition` (
   `id` int NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `country_id` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -56,7 +56,7 @@ INSERT INTO `competition` (`id`, `name`, `type`, `country_id`) VALUES
 
 CREATE TABLE `country` (
   `id` int NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -69,7 +69,16 @@ INSERT INTO `country` (`id`, `name`) VALUES
 (3, 'England'),
 (4, 'Spain'),
 (5, 'Germany'),
-(6, 'Italia');
+(6, 'Italia'),
+(7, 'Brazil'),
+(8, 'Austria'),
+(9, 'Argentina'),
+(10, 'United State'),
+(11, 'Marocco'),
+(12, 'Algeria'),
+(13, 'Poland'),
+(14, 'Portugal'),
+(15, 'Sénegal');
 
 -- --------------------------------------------------------
 
@@ -78,7 +87,7 @@ INSERT INTO `country` (`id`, `name`) VALUES
 --
 
 CREATE TABLE `doctrine_migration_versions` (
-  `version` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
+  `version` varchar(191) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `executed_at` datetime DEFAULT NULL,
   `execution_time` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
@@ -100,7 +109,7 @@ CREATE TABLE `palmares` (
   `id` int NOT NULL,
   `competition_id` int DEFAULT NULL,
   `team_id` int DEFAULT NULL,
-  `year` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `year` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -251,7 +260,6 @@ INSERT INTO `palmares` (`id`, `competition_id`, `team_id`, `year`) VALUES
 (141, 3, 18, '1949'),
 (142, 3, 2, '1948'),
 (143, 3, 4, '1946'),
-(144, 3, NULL, ''),
 (145, 5, 26, '2021'),
 (146, 5, 25, '2020'),
 (147, 5, 26, '2019'),
@@ -381,8 +389,69 @@ CREATE TABLE `player` (
   `id` int NOT NULL,
   `team_id` int DEFAULT NULL,
   `country_id` int DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `player`
+--
+
+INSERT INTO `player` (`id`, `team_id`, `country_id`, `name`) VALUES
+(85, 2, 2, 'Mattéo Guendouzi'),
+(86, 2, 15, 'Pape Gueye'),
+(87, 2, 7, 'Luan Peres'),
+(88, 2, 7, 'Gerson'),
+(89, 2, 1, 'Cengiz Under'),
+(90, 2, 13, 'Arkadiusz Milik'),
+(91, 2, 4, 'Pol Mikel Lirola'),
+(92, 2, 2, 'Steve Mandanda'),
+(93, 2, 2, 'Amine Harit'),
+(94, 2, 1, 'Sead Kolasinac'),
+(95, 2, 2, 'Boubacar Kamara'),
+(96, 2, 2, 'Dimitri Payet'),
+(97, 2, 2, 'Valentin Rongier'),
+(98, 2, 1, 'Duje Caleta-Car'),
+(99, 2, 2, 'Cédric Bakambu'),
+(100, 2, 4, 'Pau Lopez'),
+(101, 2, 4, 'Alvaro Gonzalez'),
+(102, 2, 2, 'William Saliba'),
+(103, 2, 9, 'Leonardo Balerdi'),
+(104, 2, 7, 'Luis Henrique'),
+(105, 2, 2, 'Simon Ngapandouetnbu'),
+(106, 2, 10, 'Konrad de la Fuente'),
+(107, 2, 2, 'Ugo Bertelli'),
+(108, 2, 11, 'Salim Ben Seghir'),
+(109, 2, 11, 'Oussama Targhalline'),
+(110, 2, 15, 'Cheikh Ahmoud Dieng'),
+(111, 2, 2, 'Bilal Nadir'),
+(112, 2, 2, 'Paolo Sciortino'),
+(115, 19, 5, 'Ismail Jakobs'),
+(117, 19, 2, 'Avel Disasi'),
+(118, 19, 7, 'Jean Lucas'),
+(120, 19, 14, 'Gelson Martins'),
+(123, 19, 5, 'Alexander Nubel'),
+(124, 19, 1, 'Myron Boadu'),
+(125, 19, 4, 'Fabregas'),
+(126, 19, 2, 'Ruben Aguilar'),
+(129, 19, 14, 'Pelé'),
+(130, 19, 2, 'Sofiane Diop'),
+(131, 19, 2, 'Youssouf Fofana'),
+(139, 19, 13, 'Radoslaw Majecki'),
+(140, 19, 2, 'Wissam Ben Yedder'),
+(141, 19, 5, 'Kevin Volland'),
+(143, 19, 2, 'Jean MArcellin'),
+(146, 19, 7, 'Caio Henrique'),
+(148, 19, 2, 'Djibril Sidibé'),
+(149, 19, 6, 'Vito Mannone'),
+(154, 19, 2, 'Aurelien Tchouameni'),
+(155, 19, 15, 'Krépin Diatta'),
+(159, 19, 1, 'Strahinja Pavlovic'),
+(160, 19, 2, 'Chrislain Matsima'),
+(161, 19, 1, 'Eliot Matazo'),
+(162, 19, 7, 'Vanderson'),
+(163, 19, 2, 'Maghnes Akliouche'),
+(164, 19, 2, 'Félix Lemarechal'),
+(165, 19, 2, 'Benoit Badiashile');
 
 -- --------------------------------------------------------
 
@@ -393,7 +462,7 @@ CREATE TABLE `player` (
 CREATE TABLE `team` (
   `id` int NOT NULL,
   `country_id` int DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -579,7 +648,7 @@ ALTER TABLE `competition`
 -- AUTO_INCREMENT pour la table `country`
 --
 ALTER TABLE `country`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT pour la table `palmares`
@@ -591,7 +660,7 @@ ALTER TABLE `palmares`
 -- AUTO_INCREMENT pour la table `player`
 --
 ALTER TABLE `player`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
 
 --
 -- AUTO_INCREMENT pour la table `team`
