@@ -5,9 +5,13 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\PalmaresRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     normalizationContext={"groups"={"palmares:read", "competition:read"}},
+ *     denormalizationContext={"groups"={"palmared:write", "competition:write"}}
+ * )
  * @ORM\Entity(repositoryClass=PalmaresRepository::class)
  */
 class Palmares
@@ -16,11 +20,13 @@ class Palmares
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"palmares:read", "competition:read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"palmares:read", "competition:read"})
      */
     private $year;
 
@@ -31,6 +37,7 @@ class Palmares
 
     /**
      * @ORM\ManyToOne(targetEntity=Team::class, inversedBy="palmares")
+     * @Groups("competition:read")
      */
     private $team;
 
