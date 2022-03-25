@@ -40,7 +40,6 @@ class Competition
 
     /**
      * @ORM\OneToMany(targetEntity=Palmares::class, mappedBy="competition")
-     * @Groups("competition:read")
      */
     private $palmares;
 
