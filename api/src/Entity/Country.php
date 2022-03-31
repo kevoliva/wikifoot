@@ -8,12 +8,17 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 
 /**
  * @ApiResource(
  *     normalizationContext={"groups"={"country:read"}},
  *     denormalizationContext={"groups"={"country:write"}}
  * )
+ * @ApiFilter(
+ *      OrderFilter::class, properties={"id", "name"},
+ *      arguments={"orderParameterName"="order"})
  * @ORM\Entity(repositoryClass=CountryRepository::class)
  */
 class Country

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use App\Repository\PlayerRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -12,6 +14,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     normalizationContext={"groups"={"player:read", "country:read"}},
  *     denormalizationContext={"groups"={"player:write", "country:write"}}
  * )
+ * @ApiFilter(
+ *      OrderFilter::class, properties={"id", "name"},
+ *      arguments={"orderParameterName"="order"})
  * @ORM\Entity(repositoryClass=PlayerRepository::class)
  */
 class Player

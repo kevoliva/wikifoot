@@ -6,12 +6,17 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\PalmaresRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 
 /**
  * @ApiResource(
  *     normalizationContext={"groups"={"palmares:read", "competition:read"}},
  *     denormalizationContext={"groups"={"palmared:write", "competition:write"}}
  * )
+ * @ApiFilter(
+ *      OrderFilter::class, properties={"id", "year"},
+ *      arguments={"orderParameterName"="order"})
  * @ORM\Entity(repositoryClass=PalmaresRepository::class)
  */
 class Palmares

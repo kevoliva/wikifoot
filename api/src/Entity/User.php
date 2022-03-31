@@ -10,6 +10,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
+
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ApiResource(
