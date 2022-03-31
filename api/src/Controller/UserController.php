@@ -30,7 +30,7 @@ class UserController extends AbstractController
     /**
      * @Route("/api/users", name="app_user_create", methods={"POST"})
      */
-    public function __invoke(Request $request, User $data, MailerInterface $mailer, UserRepository $userRepository)
+    public function __invoke(Request $request, MailerInterface $mailer, UserRepository $userRepository)
     {
         $requestData = json_decode($request->getContent(), true);
         $request->request->replace(is_array($requestData) ? $requestData : array());

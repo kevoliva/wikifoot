@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
  * @ApiResource(
@@ -18,7 +19,11 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
  * )
  * @ApiFilter(
  *      OrderFilter::class, properties={"id", "name", "type"},
- *      arguments={"orderParameterName"="order"})
+ *      arguments={"orderParameterName"="order"},
+ * )
+ * @ApiFilter(
+ *      SearchFilter::class, properties={"type":"exact"}
+ * )
  * @ORM\Entity(repositoryClass=CompetitionRepository::class)
  */
 class Competition
