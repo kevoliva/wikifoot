@@ -4,6 +4,7 @@
 namespace App\DataPersister;
 
 use App\Entity\User;
+use App\Controller\UserController;
 use Doctrine\ORM\EntityManagerInterface;
 use ApiPlatform\Core\DataPersister\ContextAwareDataPersisterInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
